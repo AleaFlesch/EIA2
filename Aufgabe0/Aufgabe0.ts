@@ -1,8 +1,11 @@
 
 // Begrüßung
 
-<script language = "typescript">
-var name = "";
-name = prompt ("Wie heißt du?", "");
-document.write ("Hallo" + name + "schön dass du vorbei schaust" + "!");
-</script>
+function Funktion(): void {
+var name = prompt("Wie heißt du?");
+
+if (name != null) {
+    document.getElementById("solution").innerHTML =
+    "Schön dass du vobei schaust "  +  name + " :)";
+    }
+}
