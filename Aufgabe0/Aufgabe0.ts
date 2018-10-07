@@ -6,6 +6,6 @@ var name = prompt("Wie heißt du?");
 
 if (name != null) {
     document.getElementById("solution").innerHTML =
-    "Schoen dass du vobei schaust "  +  name + " :)";
+    "Schön dass du vorbei schaust "  +  name + " :)";
     }
 }
