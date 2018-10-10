@@ -6,4 +6,5 @@ function Funktion() {
             "Sch�n dass du vorbei schaust " + name + " :)";
     }
 }
+console.log("Sch�n dass du vorbei schaust " + name + " :)");
 //# sourceMappingURL=Aufgabe0.js.map

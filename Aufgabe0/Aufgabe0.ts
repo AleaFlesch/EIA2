@@ -9,3 +9,5 @@ if (name != null) {
     "Schön dass du vorbei schaust "  +  name + " :)";
     }
 }
+
+    console.log("Schön dass du vorbei schaust " + name + " :)");
