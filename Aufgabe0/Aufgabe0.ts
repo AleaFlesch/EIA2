@@ -2,7 +2,7 @@
 // Begr¸ﬂung
 
 function Funktion(): void {
-var name = prompt("Wie heiﬂt du?");
+var name : string = prompt("Wie heiﬂt du?");
 
 if (name != null) {
     document.getElementById("solution").innerHTML =
