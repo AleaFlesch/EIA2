@@ -21,12 +21,12 @@ var Boxes;
                 c = "#0000ff";
         }
         for (let a = 50; a > 0; a -= 20) {
-            PlaceDiv(c, x, y, a, a);
+            placeDiv(c, x, y, a, a);
             if (i == 4)
                 break;
         }
     }
-    function PlaceDiv(_color, _x, _y, _width, _height) {
+    function placeDiv(_color, _x, _y, _width, _height) {
         let div = document.createElement("div");
         document.body.appendChild(div);
         let s = div.style;

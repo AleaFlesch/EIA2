@@ -21,17 +21,17 @@ namespace Boxes {
                 c = "#0000ff";
         }
         for (let a: number = 50; a > 0; a -= 20) {
-            PlaceDiv(c, x, y, a, a);
+            placeDiv(c, x, y, a, a);
             if (i == 4)
                 break;
         }
     }
 
 
-    function PlaceDiv(_color: string, _x: number, _y: number, _width: number, _height: number): void {
+    function placeDiv(_color: string, _x: number, _y: number, _width: number, _height: number): void {
         let div: HTMLDivElement = document.createElement("div");
         document.body.appendChild(div);
-
+        
         let s: CSSStyleDeclaration = div.style;
         s.border = "thin solid black";
         s.position = "absolute";
