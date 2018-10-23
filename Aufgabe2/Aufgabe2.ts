@@ -1,35 +1,277 @@
-namespace Uno {
-    
-    var red: string= "#FF0000";                    // Farbzuweisung in CSS? Wie verknüft man das mit Zahlen in Array?
-    var blue: string= "#0000FF";
-    var green: string= "##00FF00";
-    var yellow: string= "##FFFF00";
-    var black: string= "#00000";
-    
-    var Handkarten: number [][]=[];                                                     // leeres Array, in welches am Schluss die zufällig ausgwählten Karten eingetragen werden -> zur Ausgabe in HTML
-    var Karten: number [][]=[[0,0],[0,1], ];                                            // Array in welchem alle vorhandenen Karten gespeichert sind
-    
-    function Funktion(): void {                                                         // Funktion zur Darstellung einer variablen Anzahl an Karten
-        var Anzahl : string = prompt("Wie viele Karten möchtest du auf die Hand?");     // Promp Anfragefenster in dem der User die Handkarten-Anzahl festlegt
-    
-            if (Anzahl != null) {                                       // Falls die Anzahl nicht "null" entspricht...                                          
-            document.getElementById("solution").innerHTML =             // ...soll in HTML...
-            ""  +  Handkarten;                                          // ... das Array Handkarten ausgegeben werden.
+/*
+Aufgabe: Aufgabe 2
+Name: Alea Flesch
+Matrikel: 259109
+Datum: 21.10.2018
+Hiermit versichere ich, dass ich diesen
+Code selbst geschrieben habe. Er wurde
+nicht kopiert und auch nicht diktiert.
+*/
+
+namespace UNO {
+
+    function uno() {
+
+        interface cards {
+            name: string;
+            red: number;
+            blue: number;
+            green: number;
+            yellow: number;
+        }
+
+        let k0: cards = {
+            name: "0",
+            red: 1,
+            blue: 1,
+            green: 1,
+            yellow: 1
+        }
+
+        let k1: cards = {
+            name: "1",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k2: cards = {
+            name: "2",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k3: cards = {
+            name: "3",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k4: cards = {
+            name: "4",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k5: cards = {
+            name: "5",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k6: cards = {
+            name: "6",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k7: cards = {
+            name: "7",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k8: cards = {
+            name: "8",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let k9: cards = {
+            name: "9",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let kr: cards = {
+            name: "Reverse",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let kd2: cards = {
+            name: "Draw2",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let ks: cards = {
+            name: "Skip",
+            red: 2,
+            blue: 2,
+            green: 2,
+            yellow: 2
+        }
+
+        let Allcards: cards[] = [k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, kr, kd2, ks]
+        let s1: number = 4
+        let s2: number = 4
+        let c: string = "";
+
+
+
+        function random(x: number) {
+            return Math.floor(Math.random() * Math.floor(x))
+        };
+
+
+
+        function placeDiv(_color: string, _v: string, _y: number): void {
+            let div: HTMLDivElement = document.createElement("div");
+            document.body.appendChild(div);
+
+            div.setAttribute("id", "a" + _y);
+            document.getElementById("a" + _y).innerHTML += _v;
+            let s: CSSStyleDeclaration = div.style;
+            s.border = "thin solid black";
+            s.textAlign = "center";
+            s.position = "absolute";
+            s.backgroundColor = _color;
+            s.width = 100 + "px";
+            s.height = 200 + "px";
+            s.left = (_y + 0.2) * 110 + "px";
+            s.bottom = 40 + "px";
+            if (_color == "black") {
+                s.color = "white";
             }
-        
-        for (var i: number=0; i<Anzahl; i++) {                          // for Schleife um Karten zu generieren, solange wie i kleiner ist als Anzahl
-            function getRandomInt(max) {                                // Funktion für zufällige Karten
-                return Math.floor(Math.random() * Math.floor(max));     // zufällige Zahl wird zurückgegeben
+            if (_color == "blue") {
+                s.color = "white";
+            }  //weiße Schrift bei schwarzen und blauen Karten
+
+
+        }
+
+        let z: number;
+        let input: string = prompt("Wie viele Karten hättest du gerne?"); //prompt Abfrage nach Anzahl Karten
+        z = Number(input);
+
+
+        for (let d: number = 0; d < z; d++) {
+            let l = random(15);
+            if (l == 13 && s1 > 0) {
+                c = "black";
+                s1--;
+                placeDiv(c, "WildDraw", d);
+                continue;
             }
-    
-            console.log(Math.random());         // Output zufälliger Karten: Nummer zwischen 0 und 1
-        }     
+
+            else if (l == 13 && s1 <= 0) {
+                d--;
+                continue;
+            }
+            else {
+                if (l == 14 && s2 > 0) {
+                    c = "black";
+                    s2--;
+                    placeDiv(c, "WildCard", d);
+                    continue;
+                }
+                else if (l == 14 && s2 <= 0) {
+                    d--;
+                    continue;
+                }
+                else {
+                    let b: number = random(4);
+                    switch (b) {
+                        case 0:
+                            c = "red";
+                            if (Allcards[l].red > 0) {
+                                placeDiv(c, Allcards[l].name, d);
+                                Allcards[l].red--;
+                                continue;
+                            }
+                        case 1:
+                            c = "green";
+                            if (Allcards[l].green > 0) {
+                                placeDiv(c, Allcards[l].name, d);
+                                Allcards[l].green--;
+                                continue;
+                            }
+
+                        case 2:
+                            c = "blue";
+                            if (Allcards[l].blue > 0) {
+                                placeDiv(c, Allcards[l].name, d);
+                                Allcards[l].blue--;
+                                continue;
+                            }
+
+                        case 3:
+                            c = "yellow";
+                            if (Allcards[l].yellow > 0) {
+                                placeDiv(c, Allcards[l].name, d);
+                                Allcards[l].yellow--;
+                                continue;
+                            }
+                            else {
+                                d--;
+                                continue
+                            }
+
+                    }
+
+                }
+
+            }
+        }
+        function Stapel() {
+            let div = document.createElement("div");
+            document.body.appendChild(div);
+            div.setAttribute("id", "CardDeck");
+            document.getElementById("CardDeck").innerHTML += "CardDeck";
+            let s = div.style;
+            s.border = "solid black";
+            s.textAlign = "center";
+            s.position = "absolute";
+            s.backgroundColor = "lightgray";
+            s.width = 100 + "px";
+            s.height = 200 + "px";
+            s.left = 50 + "px";
+            s.top = 20 + "px";
+        }
+
+        function DiscardDeck() {
+            let div = document.createElement("div");
+            document.body.appendChild(div);
+            div.setAttribute("id", "DiscardDeck");
+            document.getElementById("DiscardDeck").innerHTML += "DiscardDeck";
+            let s = div.style;
+            s.border = "solid black";
+            s.textAlign = "center";
+            s.position = "absolute";
+            s.backgroundColor = "grey";
+            s.width = 100 + "px";
+            s.height = 200 + "px";
+            s.right = 50 + "px";
+            s.top = 20 + "px";
+        }
+
+        DiscardDeck();
+        Stapel();
     }
 
-    console.log("" + Funktion);                 // Output Funktion Anzahl 
-    
-    Handkarten [i]=Karten[Math.random];         // Zuweisung zufälliger Karten in Handkarten Array
-    
+    document.addEventListener("DOMContentLoaded", (uno))
 
-    
+
 }
