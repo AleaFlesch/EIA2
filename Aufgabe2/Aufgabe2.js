@@ -1,233 +1,27 @@
-/*
-Aufgabe: Aufgabe 2
-Name: Alea Flesch
-Matrikel: 259109
-Datum: 21.10.2018
-Hiermit versichere ich, dass ich diesen
-Code selbst geschrieben habe. Er wurde
-nicht kopiert und auch nicht diktiert.
-*/
-var UNO;
-(function (UNO) {
-    function uno() {
-        let k0 = {
-            name: "0",
-            red: 1,
-            blue: 1,
-            green: 1,
-            yellow: 1
-        };
-        let k1 = {
-            name: "1",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k2 = {
-            name: "2",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k3 = {
-            name: "3",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k4 = {
-            name: "4",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k5 = {
-            name: "5",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k6 = {
-            name: "6",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k7 = {
-            name: "7",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k8 = {
-            name: "8",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let k9 = {
-            name: "9",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let kr = {
-            name: "Reverse",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let kd2 = {
-            name: "Draw2",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let ks = {
-            name: "Skip",
-            red: 2,
-            blue: 2,
-            green: 2,
-            yellow: 2
-        };
-        let Allcards = [k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, kr, kd2, ks];
-        let s1 = 4;
-        let s2 = 4;
-        let c = "";
-        function random(x) {
-            return Math.floor(Math.random() * Math.floor(x));
-        }
-        ;
-        function placeDiv(_color, _v, _y) {
-            let div = document.createElement("div");
-            document.body.appendChild(div);
-            div.setAttribute("id", "a" + _y);
-            document.getElementById("a" + _y).innerHTML += _v;
-            let s = div.style;
-            s.border = "thin solid black";
-            s.textAlign = "center";
-            s.position = "absolute";
-            s.backgroundColor = _color;
-            s.width = 100 + "px";
-            s.height = 200 + "px";
-            s.left = (_y + 0.2) * 110 + "px";
-            s.bottom = 40 + "px";
-            if (_color == "black") {
-                s.color = "white";
-            }
-            if (_color == "blue") {
-                s.color = "white";
-            } //wei�e Schrift bei schwarzen und blauen Karten
-        }
-        let z;
-        let input = prompt("Wie viele Karten h�ttest du gerne?"); //prompt Abfrage nach Anzahl Karten
-        z = Number(input);
-        for (let d = 0; d < z; d++) {
-            let l = random(15);
-            if (l == 13 && s1 > 0) {
-                c = "black";
-                s1--;
-                placeDiv(c, "WildDraw", d);
-                continue;
-            }
-            else if (l == 13 && s1 <= 0) {
-                d--;
-                continue;
-            }
-            else {
-                if (l == 14 && s2 > 0) {
-                    c = "black";
-                    s2--;
-                    placeDiv(c, "WildCard", d);
-                    continue;
-                }
-                else if (l == 14 && s2 <= 0) {
-                    d--;
-                    continue;
-                }
-                else {
-                    let b = random(4);
-                    switch (b) {
-                        case 0:
-                            c = "red";
-                            if (Allcards[l].red > 0) {
-                                placeDiv(c, Allcards[l].name, d);
-                                Allcards[l].red--;
-                                continue;
-                            }
-                        case 1:
-                            c = "green";
-                            if (Allcards[l].green > 0) {
-                                placeDiv(c, Allcards[l].name, d);
-                                Allcards[l].green--;
-                                continue;
-                            }
-                        case 2:
-                            c = "blue";
-                            if (Allcards[l].blue > 0) {
-                                placeDiv(c, Allcards[l].name, d);
-                                Allcards[l].blue--;
-                                continue;
-                            }
-                        case 3:
-                            c = "yellow";
-                            if (Allcards[l].yellow > 0) {
-                                placeDiv(c, Allcards[l].name, d);
-                                Allcards[l].yellow--;
-                                continue;
-                            }
-                            else {
-                                d--;
-                                continue;
-                            }
-                    }
+var Uno2;
+(function (Uno2) {
+    //Deklaration    
+    let handcards;
+    let colors = ["Red", "Blue", "Green", "Yellow"];
+    let values = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "x", "<->"];
+    let deck;
+    //promt function
+    function main() {
+        let x;
+        let y = prompt("Wie viele Karten m�chtest du?");
+        x = Number(y);
+        for (let i = 0; i < colors.length; i++) {
+            for (let a = 0; a < values.length; a++) {
+                for (let z = 0; z < 2; z++) {
+                    let card = { color: colors[i], value: values[a] };
+                    deck.push(card);
                 }
             }
         }
-        function Stapel() {
-            let div = document.createElement("div");
-            document.body.appendChild(div);
-            div.setAttribute("id", "CardDeck");
-            document.getElementById("CardDeck").innerHTML += "CardDeck";
-            let s = div.style;
-            s.border = "solid black";
-            s.textAlign = "center";
-            s.position = "absolute";
-            s.backgroundColor = "lightgray";
-            s.width = 100 + "px";
-            s.height = 200 + "px";
-            s.left = 50 + "px";
-            s.top = 20 + "px";
+        //rand    
+        function random(n) {
+            return Math.floor(Math.random() * Math.floor(n));
         }
-        function DiscardDeck() {
-            let div = document.createElement("div");
-            document.body.appendChild(div);
-            div.setAttribute("id", "DiscardDeck");
-            document.getElementById("DiscardDeck").innerHTML += "DiscardDeck";
-            let s = div.style;
-            s.border = "solid black";
-            s.textAlign = "center";
-            s.position = "absolute";
-            s.backgroundColor = "grey";
-            s.width = 100 + "px";
-            s.height = 200 + "px";
-            s.right = 50 + "px";
-            s.top = 20 + "px";
-        }
-        DiscardDeck();
-        Stapel();
     }
-    document.addEventListener("DOMContentLoaded", (uno));
-})(UNO || (UNO = {}));
+})(Uno2 || (Uno2 = {}));
 //# sourceMappingURL=Aufgabe2.js.map
