@@ -55,7 +55,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 }
 
 .Red {
-	background-color: #f73429;
+	background-color: #FF0000;
 	width: 116px;
 	height: 185px;
 	outline: solid thin black;
@@ -73,7 +73,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 }
 
 .Blue {
-	background-color: #2c57d2;
+	background-color: #0101DF;
 	width: 116px;
 	height: 185px;
 	outline: solid thin black;
@@ -91,7 +91,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 }
 
 .Green {
-	background-color: #008a4e;
+	background-color: #01DF01;
 	width: 116px;
 	height: 185px;
 	outline: solid thin black;
@@ -109,7 +109,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 }
 
 .Yellow {
-	background-color: #ffe300;
+	background-color: #FFFF00;
 	width: 116px;
 	height: 185px;
 	outline: solid thin black;
