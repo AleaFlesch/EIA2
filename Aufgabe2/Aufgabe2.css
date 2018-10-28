@@ -9,7 +9,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 #Ablagestapel {
 	background-color: black;
 	width: 116px;
-	height: 185px;
+	height: 165px;
 	border: solid thin black;
 	border-radius: 25px;
 	position: absolute;
@@ -19,13 +19,13 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 	text-align: center;
 	color: white;
 	font-size: 0.9em;
-	padding-top: 30px;
+	padding-top: 50px;
 }
 
 #Nachziehstapel {
 	background-color: black;
 	width: 116px;
-	height: 185px;
+	height: 165px;
 	border: solid thin black;
 	border-radius: 25px;
 	position: absolute;
@@ -35,7 +35,7 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 	text-align: center;
 	color: white;
 	font-size: 0.9em;
-	padding-top: 30px;
+	padding-top: 50px;
 }
 
 #Handkarten {
