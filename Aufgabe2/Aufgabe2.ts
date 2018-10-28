@@ -32,6 +32,8 @@ namespace Uno2 {
         }
     }
 
+    console.log(deck);    
+    
     //promt function
     let x: number;
     function main(): void {
@@ -66,9 +68,3 @@ namespace Uno2 {
 
 
 }
-
-
-
-
-
-

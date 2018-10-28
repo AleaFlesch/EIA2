@@ -22,6 +22,7 @@ var Uno2;
             }
         }
     }
+    console.log(deck);
     //promt function
     let x;
     function main() {
