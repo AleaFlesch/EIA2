@@ -3,10 +3,8 @@ Aufgabe: Aufgabe 2
 Name: Alea Flesch
 Matrikel: 259109
 Datum: 26.10.2018
-Hiermit versichere ich, dass ich diesen
-Code selbst in Zusammenarbeit mit Theresa Gut &
-mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde
-nicht kopiert und auch nicht diktiert.
+Hiermit versichere ich, dass ich diesen Code selbst in Zusammenarbeit mit Theresa Gut &
+mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
 
 namespace Uno2 {
@@ -20,10 +18,10 @@ namespace Uno2 {
     }
 
     //Deklaration    
-    let handcards: Card[];
+    let handcards: Card[] = [];
     let colors: string[] = ["Red", "Blue", "Green", "Yellow"];
     let values: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "x", "<->"];
-    let deck: Card[]
+    let deck: Card[] =[{color:"Red", value:"0"},{color:"Blue", value:"0"} , {color:"Green", value:"0"} , {color:"Yellow", value:"0"} , {color:"Black", value:"+4"} , {color:"Black", value:"+4"} , {color:"Black", value:"wish"} , {color:"Black", value:"wish"}];
 
     for (let i: number = 0; i < colors.length; i++) {
         for (let a: number = 0; a < values.length; a++) {
@@ -51,7 +49,7 @@ namespace Uno2 {
         for (let k: number = 0; k < x; k++) {
             let r: number = Math.floor(Math.random() * (deck.length - 1));
             handcards.push(deck[r]);                                      //Karte von deck in handcard kopiert       
-            deck.splice(r);                                                  //kopierte Karte wurde aus deck gelöscht 
+            deck.splice(r,1);                                                  //kopierte Karte wurde aus deck gelöscht 
         }
     }
 
