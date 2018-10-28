@@ -58,69 +58,16 @@ namespace Uno2 {
 
     // Inhalte für HTML
 
-    function placeDiv(_color: string, _v: string, _y: number): void {
-        let div: HTMLDivElement = document.createElement("div");
-        document.body.appendChild(div);
-
-        div.setAttribute("id", "a" + _y);
-        document.getElementById("a" + _y).innerHTML += _v;
-        let s: CSSStyleDeclaration = div.style;
-        s.border = "thin solid black";
-        s.textAlign = "center";
-        s.position = "absolute";
-        s.backgroundColor = _color;
-        s.width = 100 + "px";
-        s.height = 200 + "px";
-        s.left = (_y + 0.2) * 110 + "px";
-        s.bottom = 40 + "px";
-        if (_color == "black") {
-            s.color = "white";
-        }
-        if (_color == "blue") {
-            s.color = "white";
-        }  //Schrift bei schwarzen und blauen Karten in weiß geändert
-
-
+    for (let h: number = 0; h < handcards.length; h++) {
+        let div: HTMLElement = document.createElement("div");
+        document.getElementById("Handkarten").appendChild(div);
+        div.innerHTML = handcards[h].value;
+        div.classList.add("Handkarten");
+        div.classList.add(handcards[h].color);
     }
 
-    function Stapel() {
-        let div = document.createElement("div");
-        document.body.appendChild(div);
-        div.setAttribute("id", "CardDeck");
-        document.getElementById("CardDeck").innerHTML += "CardDeck";
-        let s = div.style;
-        s.border = "solid black";
-        s.textAlign = "center";
-        s.position = "absolute";
-        s.backgroundColor = "lightgray";
-        s.width = 100 + "px";
-        s.height = 200 + "px";
-        s.left = 50 + "px";
-        s.top = 20 + "px";
-    }
 
-    function DiscardDeck() {
-        let div = document.createElement("div");
-        document.body.appendChild(div);
-        div.setAttribute("id", "DiscardDeck");
-        document.getElementById("DiscardDeck").innerHTML += "DiscardDeck";
-        let s = div.style;
-        s.border = "solid black";
-        s.textAlign = "center";
-        s.position = "absolute";
-        s.backgroundColor = "grey";
-        s.width = 100 + "px";
-        s.height = 200 + "px";
-        s.right = 50 + "px";
-        s.top = 20 + "px";
-    }
-
-    DiscardDeck();
-    Stapel();
 }
-
-
-
 
 
 
