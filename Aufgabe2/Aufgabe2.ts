@@ -21,7 +21,7 @@ namespace Uno2 {
     let handcards: Card[] = [];
     let colors: string[] = ["Red", "Blue", "Green", "Yellow"];
     let values: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "x", "<->"];
-    let deck: Card[] =[{color:"Red", value:"0"},{color:"Blue", value:"0"} , {color:"Green", value:"0"} , {color:"Yellow", value:"0"} , {color:"Black", value:"+4"} , {color:"Black", value:"+4"} , {color:"Black", value:"wish"} , {color:"Black", value:"wish"}];
+    let deck: Card[] = [{ color: "Red", value: "0" }, { color: "Blue", value: "0" }, { color: "Green", value: "0" }, { color: "Yellow", value: "0" }, { color: "Black", value: "+4" }, { color: "Black", value: "+4" }, { color: "Black", value: "wish" }, { color: "Black", value: "wish" }];
 
     for (let i: number = 0; i < colors.length; i++) {
         for (let a: number = 0; a < values.length; a++) {
@@ -49,7 +49,7 @@ namespace Uno2 {
         for (let k: number = 0; k < x; k++) {
             let r: number = Math.floor(Math.random() * (deck.length - 1));
             handcards.push(deck[r]);                                      //Karte von deck in handcard kopiert       
-            deck.splice(r,1);                                                  //kopierte Karte wurde aus deck gelöscht 
+            deck.splice(r, 1);                                                  //kopierte Karte wurde aus deck gelöscht 
         }
     }
 

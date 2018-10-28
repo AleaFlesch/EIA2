@@ -6,36 +6,32 @@ Datum: 26.10.2018
 Hiermit versichere ich, dass ich diesen Code selbst in Zusammenarbeit mit Theresa Gut &
 mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
-
-#Ablagestapel{
+#Ablagestapel {
 	background-color: black;
-	width:116px;
-	height:185px;
-	border:solid thin black;
-	border-radius:25px;
+	width: 116px;
+	height: 185px;
+	border: solid thin black;
+	border-radius: 25px;
 	position: absolute;
-	right:400px;
-	top:40px;
+	right: 400px;
+	top: 40px;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-align: center;
-	color:#FFD700;
- 
-	
+	color: #FFD700;
 }
-#Nachziehstapel{
+
+#Nachziehstapel {
 	background-color: black;
-	width:116px;
-	height:185px;
-	border:solid thin black;
-	border-radius:25px;
+	width: 116px;
+	height: 185px;
+	border: solid thin black;
+	border-radius: 25px;
 	position: absolute;
-	left:400px;
-	top:40px;
+	left: 400px;
+	top: 40px;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-align: center;
-	color:#FFD700;
- 
-	
+	color: #FFD700;
 }
 
 #Handkarten {
@@ -46,110 +42,101 @@ mit Unterstützung von Lukas und Anna geschrieben habe. Er wurde nicht kopiert un
 	left: 60px;
 	right: 20px;
 	position: absolute;
-	
 }
 
 .newBox {
 	display: inline-block;
 	margin: 10px;
 	border: solid thin black;
-	
-	
-	}
-
-.Red{
-	background-color: #f73429;
-	width:116px;
-	height:185px;
-	outline: solid thin black;
-	border:solid thick white;
-	top:10px;
-	font-family: 'Source Sans Pro', sans-serif;
-	text-shadow: 3px 2px black;
-	font-size: 30pt;
-	text-align: center;
-	color:white;
-	border-radius:5px;
-	box-sizing:border-box;
-	margin-left: 20px;
-	margin-right: 20px;
-	
-	
-	}
-
-.Blue{
-	background-color: #2c57d2;
-	width:116px;
-	height:185px;
-	outline: solid thin black;
-	border:solid thick white;
-	top:10px;
-	font-family: 'Source Sans Pro', sans-serif;
-	text-shadow: 3px 2px black;
-	font-size: 30pt;
-	text-align: center;
-	color:white;
-	border-radius:5px;
-	box-sizing:border-box;
-	margin-left: 20px;
-	margin-right: 20px;
-	
 }
 
-.Green{
+.Red {
+	background-color: #f73429;
+	width: 116px;
+	height: 185px;
+	outline: solid thin black;
+	border: solid thick white;
+	top: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-shadow: 3px 2px black;
+	font-size: 30pt;
+	text-align: center;
+	color: white;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.Blue {
+	background-color: #2c57d2;
+	width: 116px;
+	height: 185px;
+	outline: solid thin black;
+	border: solid thick white;
+	top: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-shadow: 3px 2px black;
+	font-size: 30pt;
+	text-align: center;
+	color: white;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.Green {
 	background-color: #008a4e;
-	width:116px;
-	height:185px;
+	width: 116px;
+	height: 185px;
 	outline: solid thin black;
-	border:solid thick white;
-	top:10px;
+	border: solid thick white;
+	top: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-shadow: 3px 2px black;
 	font-size: 30pt;
 	text-align: center;
-	color:white;
-	border-radius:5px;
-	box-sizing:border-box;
+	color: white;
+	border-radius: 5px;
+	box-sizing: border-box;
 	margin-left: 20px;
 	margin-right: 20px;
-	
+}
 
-	}
-	
-	
-.Yellow{	
+.Yellow {
 	background-color: #ffe300;
-	width:116px;
-	height:185px;
+	width: 116px;
+	height: 185px;
 	outline: solid thin black;
-	border:solid thick white;
-	top:10px;
+	border: solid thick white;
+	top: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-shadow: 3px 2px black;
 	font-size: 30pt;
 	text-align: center;
-	color:white;
-	border-radius:5px;
-	box-sizing:border-box;
+	color: white;
+	border-radius: 5px;
+	box-sizing: border-box;
 	margin-left: 20px;
 	margin-right: 20px;
-	}
+}
 
-.Black{
+.Black {
 	background-color: black;
-	width:116px;
-	height:185px;
+	width: 116px;
+	height: 185px;
 	outline: solid thin black;
-	border:solid thick white;
-	top:10px;
+	border: solid thick white;
+	top: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-shadow: 3px 2px black;
 	font-size: 30pt;
 	text-align: center;
-	color:white;
-	border-radius:5px;
+	color: white;
+	border-radius: 5px;
 	margin-left: 20px;
 	margin-right: 20px;
-	box-sizing:border-box;
-	}
+	box-sizing: border-box;
+}
 }
