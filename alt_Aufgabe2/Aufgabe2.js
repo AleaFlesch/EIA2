@@ -1,3 +1,4 @@
+"use strict";
 /*
 Aufgabe: Aufgabe 2
 Name: Alea Flesch

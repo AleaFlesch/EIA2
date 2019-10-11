@@ -1,3 +1,4 @@
+"use strict";
 // Begr��ung
 function Funktion() {
     var name = prompt("Wie hei�t du?");
