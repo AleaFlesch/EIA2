@@ -19,7 +19,7 @@ var Endabgabe;
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(golden, "white");
-        gradient.addColorStop(1, "HSL(100, 80%, 30%)");
+        gradient.addColorStop(1, "HSL(208, 100%, 97%)");
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }

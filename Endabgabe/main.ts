@@ -26,7 +26,7 @@ namespace Endabgabe {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(golden, "white");
-        gradient.addColorStop(1, "HSL(100, 80%, 30%)");
+        gradient.addColorStop(1, "HSL(208, 100%, 97%)");
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -50,7 +50,7 @@ namespace Endabgabe {
         crc2.fill();
         crc2.restore();
     }
-    
+
 // Wolke
     function drawCloud(_position: Vector, _size: Vector): void {
         console.log ("Cloud", _position, _size);
