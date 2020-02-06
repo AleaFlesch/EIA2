@@ -74,7 +74,7 @@ namespace Endabgabe {
 
         for (let drawn: number = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x: number = (Math.random() - 0.5 * _size.x);
+            let x: number = (Math.random() - 0.5) * _size.x;
             let y: number = (Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);

@@ -56,7 +56,7 @@ var Endabgabe;
         crc2.fillStyle = gradient;
         for (let drawn = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x = (Math.random() - 0.5 * _size.x);
+            let x = (Math.random() - 0.5) * _size.x;
             let y = (Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);
