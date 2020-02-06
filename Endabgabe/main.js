@@ -12,7 +12,7 @@ var Endabgabe;
         let horizon = crc2.canvas.height * golden;
         drawBackground();
         drawSun({ x: 100, y: 75 });
-        drawCloud({ x: 500, y: 125 }, { x: 250, y: 75 });
+        drawCloud({ x: 500, y: 40 }, { x: 250, y: 75 });
         drawnMountains({ x: 0, y: horizon }, 75, 200, "grey", "white");
         drawnMountains({ x: 0, y: horizon }, 50, 150, "grey", "lightgrey");
     }
