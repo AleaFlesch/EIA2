@@ -12,7 +12,7 @@ var Endabgabe;
         let horizon = crc2.canvas.height * golden;
         drawBackground();
         drawSun({ x: 100, y: 75 });
-        drawCloud({ x: 500, y: 40 }, { x: 250, y: 75 });
+        drawCloud({ x: 500, y: 125 }, { x: 250, y: 75 });
         drawnMountains({ x: 0, y: horizon }, 75, 200, "grey", "white");
         drawnMountains({ x: 0, y: horizon }, 50, 150, "grey", "lightgrey");
     }
@@ -56,7 +56,7 @@ var Endabgabe;
         crc2.fillStyle = gradient;
         for (let drawn = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x = Math.random() - 0.5 * _size.x;
+            let x = (Math.random() - 0.5 * _size.x);
             let y = (Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);

@@ -18,7 +18,7 @@ namespace Endabgabe {
 
         drawBackground ();
         drawSun({x: 100, y: 75});
-        drawCloud ({x: 500, y: 40}, {x: 250, y: 75});
+        drawCloud ({x: 500, y: 125}, {x: 250, y: 75});
         drawnMountains({x: 0, y: horizon}, 75, 200, "grey", "white");
         drawnMountains({x: 0, y: horizon}, 50, 150, "grey", "lightgrey");
     }
@@ -74,7 +74,7 @@ namespace Endabgabe {
 
         for (let drawn: number = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x: number = Math.random() - 0.5 * _size.x;
+            let x: number = (Math.random() - 0.5 * _size.x);
             let y: number = (Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);
