@@ -24,7 +24,7 @@ namespace Endabgabe {
         console.log ("Background");
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, "lightblue");
+        gradient.addColorStop(0, "skyblue");
         gradient.addColorStop(golden, "white");
         gradient.addColorStop(1, "HSL(208, 100%, 97%)");
 

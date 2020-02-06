@@ -17,7 +17,7 @@ var Endabgabe;
     function drawBackground() {
         console.log("Background");
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, "lightblue");
+        gradient.addColorStop(0, "skyblue");
         gradient.addColorStop(golden, "white");
         gradient.addColorStop(1, "HSL(208, 100%, 97%)");
         crc2.fillStyle = gradient;
