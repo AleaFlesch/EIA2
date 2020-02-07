@@ -89,5 +89,6 @@ var Endabgabe;
         crc2.fill();
         crc2.restore();
     }
+    // Vögel
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
