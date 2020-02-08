@@ -1,123 +1,305 @@
 namespace Endabgabe {
-    interface Vector {
-        x: number;
-        y: number;
+
+    window.addEventListener("load", init);
+
+    export let crc2: CanvasRenderingContext2D;
+
+    let objects: DrawObject[] = [];
+    //let children: Children[] = [];
+    let imagedata: ImageData;
+    let fps: number = 25;
+    let i: number = 0;
+    let xMouse: number;
+    let yMouse: number;
+    let snowball: Snowball;
+    export let name: string;
+    export let score: number = 0;
+    let gameEndbool: boolean = false;
+
+    function listeners(): void {
+        console.log("listeners");
+
+        document.getElementsByTagName("canvas")[0].addEventListener("click", mouseEvent);
+
+    }
+    function init(): void {
+        document.getElementById("Anleitung").addEventListener("click", startGame);
+        document.getElementById("ende").classList.add("invisible");
+
     }
 
-    window.addEventListener("load", handleLoad);
-    let crc2: CanvasRenderingContext2D;
-    let golden: number = 0.62;
 
-    function handleLoad(_event: Event): void {
-        let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
-        if (!canvas)
-        return;
-        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
+    function startGame(): void {
+        let nameinput: HTMLInputElement = <HTMLInputElement> document.getElementById("nameinput");
+        name = nameinput.value;
+        anzeigeCanvas();
+        listeners();
 
-        let horizon: number = crc2.canvas.height * golden;
+        console.log("maininit");
 
-        drawBackground ();
-        drawSun({x: 100, y: 75});
-        drawCloud ({x: 500, y: 125}, {x: 250, y: 75});
-        drawnMountains({x: 0, y: horizon}, 75, 200, "grey", "white");
-        drawnMountains({x: 0, y: horizon}, 50, 150, "grey", "lightgrey");
+
+        let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
+        crc2 = canvas.getContext("2d");
+
+
+        drawSky();
+        drawHill();
+        drawSun();
+
+
+        drawCloud();
+        drawCloud2();
+        drawCloud3();
+
+        //generateChild();
+        //generateSlowChildren();
+        generateSnow();
+
+
+        imagedata = crc2.getImageData(0, 0, canvas.width, canvas.height);
+        setTimeout(gameEnds, 180000);
+
+        update();
     }
 
-// Hintergrund
-    function drawBackground(): void {
-        console.log ("Background");
 
-        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, "skyblue");
-        gradient.addColorStop(golden, "white");
-        gradient.addColorStop(1, "HSL(208, 100%, 97%)");
+    function anzeigeCanvas(): void {
+        document.getElementsByTagName("canvas")[0].classList.remove("invisible");
+        document.getElementsByTagName("div")[0].classList.add("invisible");
 
-        crc2.fillStyle = gradient;
-        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
-// Sonne
-    function drawSun(_position: Vector): void {
-        console.log ("Sun", _position);
 
-        let r1: number = 30;
-        let r2: number = 150;
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
 
-        gradient.addColorStop(0, "HSLA(60, 100%, 90%, 1)");
-        gradient.addColorStop(1, "HSLA(60, 100%, 50%, 0)");
+    function update(): void {
+        crc2.clearRect(0, 0, 1400, 900);
+        crc2.putImageData(imagedata, 0, 0);
+        window.setTimeout(update, 1000 / fps);
 
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
-        crc2.fillStyle = gradient;
-        crc2.arc(0, 0, r2, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.restore();
-    }
 
-// Wolke
-    function drawCloud(_position: Vector, _size: Vector): void {
-        console.log ("Cloud", _position, _size);
-
-        let nParticles: number = 20;
-        let radiusParticle: number = 50;
-        let particle: Path2D = new Path2D();
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-
-        particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.5)");
-        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)"); 
-        
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
-        crc2.fillStyle = gradient;
-
-        for (let drawn: number = 0; drawn < nParticles; drawn++) {
-            crc2.save();
-            let x: number = (Math.random() - 0.5) * _size.x;
-            let y: number = (Math.random() * _size.y);
-            crc2.translate(x, y);
-            crc2.fill(particle);
-            crc2.restore();
+        for (let i: number = 0; i < objects.length; i++) {
+            let object: DrawObject = objects[i];
+            object.draw();
+            object.move();
 
         }
-        crc2.restore();
-    }    
-// Berge
-    function drawnMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
-        console.log("Mountains");
-        let stepMin: number = 50;
-        let stepMax: number = 150;
-        let x: number = 0;
+        if (snowball) {
+            if (snowball.xP >= xMouse - 20 && snowball.xP <= xMouse + 20) {
+                if (snowball.yP >= yMouse - 20 && snowball.yP <= yMouse + 20) {
+                    console.log("ball angekommen");
+                    checkIfHit();
+                }
+            }
+        }
+        drawScore();
+    }
+    //Schneeball
+    function generateSnowball(_xMouse: number, _yMouse: number): void {
+        console.log(snowball);
 
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
 
+        snowball = new Snowball(_xMouse, _yMouse);
+        //            console.log(snowball);
+        console.log("neuer schneeball");
+
+        objects.push(snowball);
+    }
+
+    function mouseEvent(_event: MouseEvent): void {
+        if (!snowball) {
+            xMouse = _event.clientX;
+            yMouse = _event.clientY;
+            generateSnowball(xMouse, yMouse);
+        }
+    }
+
+    function checkIfHit(): void {
+        for (let i: number = 0; i < children.length; i++) {
+            if (xMouse >= children[i].xP - 60 && xMouse <= children[i].xP + 20) {
+                if (yMouse >= children[i].yP - 25 && yMouse <= children[i].yP + 60) {
+                    console.log("kind getroffen", children[i]);
+                    children.splice(i, 1);
+                    for (let a: number = 0; a < objects.length; a++) {
+                        if (objects[a].typ == "children" || objects[a].typ == "slowChildren") {
+                            if (xMouse >= objects[a].xP - 60 && xMouse <= objects[a].xP + 20) {
+                                if (yMouse >= objects[a].yP - 25 && yMouse <= objects[a].yP + 60) {
+                                    console.log("object getroffen");
+                                    objects.splice(a, 1);
+                                    let child = new Children();
+                                    objects.push(child);
+                                    children.push(child);
+
+                                    if (objects[a].md == false) {
+                                        score += 5;
+                                    }
+                                    else if (objects[a].typ == "slowChildren") {
+                                        score += 10;
+                                    }
+                                    else if (objects[a].typ == "children") {
+                                        score += 20;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for (let i: number = 0; i < objects.length; i++) {
+            if (objects[i].typ == "snowball") {
+                objects.splice(i, 1);
+                console.log("ball löschen");
+                console.log(objects[i]);
+            }
+        }
+        snowball = null;
+    }
+
+
+    //Schnee
+    function generateSnow(): void {
+        for (let i: number = 0; i < 70; i++) {
+
+            let snowflake: Snow = new Snow();
+            objects.push(snowflake);
+        }
+    }
+
+    function generateChild(): void {
+        for (let i: number = 0; i < 5; i++) {
+
+            let child: Children = new Children();
+            objects.push(child);
+            children.push(child);
+        }
+    }
+
+    function generateSlowChildren(): void {
+        for (let i: number = 0; i < 5; i++) {
+
+            let child: slowChildren = new slowChildren();
+            objects.push(child);
+            children.push(child);
+        }
+    }
+
+    function gameEnds(): void {
+        document.getElementsByTagName("canvas")[0].classList.add("invisible");
+        document.getElementById("ende").classList.remove("invisible");
+        document.getElementById("reload").classList.remove("invisible");
+        document.getElementById("yourScore").innerText = "Deine Punktzahl:" + " " + score.toString();
+        document.getElementById("reload").addEventListener("click", reload);
+
+        DatabaseClient.insert();
+        DatabaseClient.getHighscore();
+
+
+
+
+
+    }
+    function reload(): void {
+        window.location.reload();
+    }
+    function drawCloud(): void {
         crc2.beginPath();
-        crc2.moveTo(0, 0);
-        crc2.lineTo(0, -_max);
-  
-        do {
-        x += stepMin + Math.random() * (stepMax - stepMin);
-        let y: number = -_min - Math.random() * (_max - _min);
-
-        crc2.lineTo(x, y);
-        } while (x < crc2.canvas.width);
-
-        crc2.lineTo(x, 0);
-        crc2.closePath();
-
-        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -_max);
-        gradient.addColorStop(0, _colorLow);
-        gradient.addColorStop(0.7, _colorHigh);
-
-        crc2.fillStyle = gradient;
+        crc2.arc(70, 170, 45, 0, 2 * Math.PI);
+        crc2.arc(140, 170, 60, 0, 2 * Math.PI);
+        crc2.arc(200, 170, 45, 0, 2 * Math.PI);
+        crc2.arc(240, 170, 30, 0, 2 * Math.PI);
+        crc2.fillStyle = "#FFFFFF";
         crc2.fill();
 
-        crc2.restore();
-    
-}
+    }
 
-// Vögel
 
-}
+    function drawCloud2(): void {
+        crc2.beginPath();
+        crc2.arc(650, 100, 30, 0, 2 * Math.PI);
+        crc2.arc(810, 100, 60, 0, 2 * Math.PI);
+        crc2.arc(870, 100, 40, 0, 2 * Math.PI);
+        crc2.arc(750, 100, 70, 0, 2 * Math.PI);
+        crc2.arc(700, 100, 50, 0, 2 * Math.PI);
+        crc2.fillStyle = "#FFFFFF";
+        crc2.fill();
+    }
+    function drawCloud3(): void {
+        crc2.beginPath();
+        crc2.arc(595, 220, 15, 0, 2 * Math.PI);
+        crc2.arc(620, 220, 25, 0, 2 * Math.PI);
+        crc2.arc(650, 220, 30, 0, 2 * Math.PI);
+        crc2.arc(680, 220, 25, 0, 2 * Math.PI);
+        crc2.arc(705, 220, 15, 0, 2 * Math.PI);
+        crc2.arc(720, 220, 10, 0, 2 * Math.PI);
+        crc2.arc(730, 220, 8, 0, 2 * Math.PI);
+        crc2.arc(740, 220, 6, 0, 2 * Math.PI)
+
+        crc2.fillStyle = "#FFFFFF";
+        crc2.fill();
+    }
+
+
+    function drawSky(): void {
+        crc2.moveTo(0, 100);
+        crc2.beginPath();
+
+        crc2.lineTo(1400, 800);
+        crc2.lineTo(1400, 0);
+        crc2.lineTo(0, 0);
+        crc2.lineTo(0, 370);
+        crc2.closePath();
+
+        var grd = crc2.createLinearGradient(0, 0, 700, 1110);
+        grd.addColorStop(0, "#7eb6e9");
+
+        crc2.fillStyle = grd;
+        crc2.fill();
+    }
+
+    function drawHill(): void {
+        crc2.beginPath();
+        crc2.moveTo(0, 300);
+        crc2.lineTo(1400, 700);
+        crc2.lineTo(1400, 800);
+        crc2.lineTo(0, 800);
+        crc2.lineTo(0, 700);
+        crc2.closePath();
+        crc2.fillStyle = "#FFFFFF";
+        crc2.fill();
+    }
+
+    function drawSun(): void {
+        crc2.beginPath();
+        crc2.arc(150, 100, 70, 0, 2 * Math.PI);
+        crc2.fillStyle = "#fff91d";
+        crc2.fill();
+    }
+
+
+    function drawScore(): void {
+        crc2.beginPath();
+        crc2.moveTo(50, 670);
+        crc2.lineTo(300, 670);
+        crc2.lineTo(300, 770);
+        crc2.lineTo(50, 770);
+        crc2.closePath();
+        crc2.fillStyle = "#ffffff";
+        crc2.fill();
+        crc2.lineWidth = 3.5;
+        crc2.strokeStyle = "#7eb6e9";
+        crc2.stroke();
+
+        crc2.font = "30px Quicksand";
+        crc2.fillStyle = "#000000";
+        crc2.fillText("Score", 135, 700);
+
+        crc2.font = "30px Quicksand";
+        crc2.fillStyle = "#000000";
+
+        crc2.fillText(score.toString(), 135, 730);
+
+
+
+    }
+}    
