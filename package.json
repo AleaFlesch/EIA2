@@ -1,0 +1,18 @@
+{
+  "name": "eia2",
+  "version": "1.0.0",
+  "description": "Endabgabe",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./Endabgabe/server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/AleaFlesch/EIA2.git)"
+  },
+  "author": "Alea",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.7.0"
+  }
+}
