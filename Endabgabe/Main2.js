@@ -3,6 +3,7 @@
 var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", init);
+    console.log("test");
     let golden = 0.62;
     let objects = [];
     let birds = [];
@@ -193,4 +194,4 @@ var Endabgabe;
         Endabgabe.crc2.fillText(Endabgabe.score.toString(), 200, 750);
     }
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=Main.js.map
+//# sourceMappingURL=Main2.js.map

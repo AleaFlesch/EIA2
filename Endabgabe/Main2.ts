@@ -3,7 +3,7 @@
 namespace Endabgabe {
 
     window.addEventListener("load", init);
-
+    console.log("test");
     export let crc2: CanvasRenderingContext2D;
 
     let golden: number = 0.62;
