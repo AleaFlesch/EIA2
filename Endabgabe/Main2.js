@@ -194,4 +194,4 @@ var Endabgabe;
         Endabgabe.crc2.fillText(Endabgabe.score.toString(), 200, 750);
     }
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=Main.js.map
+//# sourceMappingURL=Main2.js.map
