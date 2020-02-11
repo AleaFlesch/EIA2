@@ -3,7 +3,6 @@
 var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", init);
-    let server = "https://eia2-endabgabe.herokuapp.com";
     let golden = 0.62;
     let objects = [];
     let birds = [];
@@ -155,13 +154,13 @@ var Endabgabe;
         }
     }
     /*function pickingBirds(): void {
-        for (let i: number = 0; i < 5; i++) {
-    
-            let child: slowChildren = new slowChildren();
-            objects.push(child);
-            children.push(child);
-        }
-    }*/
+       for (let i: number = 0; i < 5; i++) {
+   
+           let bird: pickingBirds = new pickingBirds();
+           objects.push(bird);
+           birds.push(bird);
+       }
+   }*/
     function gameEnds() {
         document.getElementsByTagName("canvas")[0].classList.add("invisible");
         document.getElementById("ende").classList.remove("invisible");
@@ -193,42 +192,5 @@ var Endabgabe;
         Endabgabe.crc2.fillStyle = "#000000";
         Endabgabe.crc2.fillText(Endabgabe.score.toString(), 200, 750);
     }
-    //Server & Datenbank Einrichtung
-    // connect-handler receives two standard parameters, an error object and a database object
-    function handleConnect(_e, _db) {
-        if (_e)
-            console.log("Unable to connect to database, error: ", _e);
-        else {
-            console.log("Connected to database!");
-            db = _db.db(databaseName);
-            highscore = db.collection("score");
-        }
-    }
-    function insert(_doc) {
-        // try insertion then activate callback "handleInsert"
-        highscore.insertOne(_doc, handleInsert);
-    }
-    Endabgabe.insert = insert;
-    // insertion-handler receives an error object as standard parameter
-    function handleInsert(_e) {
-        console.log("Database insertion returned -> " + _e);
-    }
-    // try to fetch all documents from database, then activate callback
-    function findAll(_callback) {
-        // cursor points to the retreived set of documents in memory
-        var cursor = highscore.find();
-        // try to convert to array, then activate callback "prepareAnswer"
-        cursor.toArray(prepareAnswer);
-        // toArray-handler receives two standard parameters, an error object and the array
-        // implemented as inner function, so _callback is in scope
-        function prepareAnswer(_e, HighscoreArray) {
-            if (_e)
-                _callback("Error" + _e);
-            else
-                // stringify creates a json-string, passed it back to _callback
-                _callback(JSON.stringify(HighscoreArray));
-        }
-    }
-    Endabgabe.findAll = findAll;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=Main.js.map
