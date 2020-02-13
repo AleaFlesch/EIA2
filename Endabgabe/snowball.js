@@ -25,7 +25,7 @@ var Endabgabe;
             Endabgabe.crc2.stroke();
         }
         move() {
-            this.scale -= 3;
+            this.scale -= 1;
             this.xP += this.xD / 30;
             this.yP += this.yD / 30;
         }
